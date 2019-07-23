@@ -5,14 +5,13 @@ tv_list_data = RestClient.get 'http://api.tvmaze.com/shows'
 
 # parse the data and save to JSON
 tl_array = JSON.parse(tv_list_data)
-byebug
 
 # map the JSON to my Show properties created within the migration
-tl_array.each do | show |
+tl_array.each do |athing|
   Show.create(
-    url: show["url"],
-    name: show["name"],
-    network: show["network"]["name"],
-    image: show["image"]["medium"]
+    url: athing["url"],
+    name: athing["name"],
+    network: athing["network"]["name"],
+    image: athing["image"]["medium"]
   )
 end
